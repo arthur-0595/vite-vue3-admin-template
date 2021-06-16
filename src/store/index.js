@@ -8,7 +8,7 @@ const store = createStore({
   modules: {
     mo1: modules1,
   },
-  getters
+  getters,
 })
 
 export default store

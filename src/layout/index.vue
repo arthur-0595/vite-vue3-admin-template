@@ -20,15 +20,20 @@
           v-model:selectedKeys="activeMenu"
           v-model:defaultSelectedKeys="defaultSelectedKeys"
         >
-          <template v-for="item in permission_routes" :key="item.name">
-            <a-menu-item
-              @click="handleMenu(item)"
-              :key="item.name"
-              v-if="!item.hidden"
-            >
-              <svg-icon class="navSvgClass" :name="item.meta.icon" />
-              <span class="title">{{ item.meta.title }}</span>
+          <template v-for="item in nav" :key="item.name">
+            <a-menu-item :key="item.id" v-if="!item.children">
+              <UserOutlined />
+              <span class="title">{{ item.title }}</span>
             </a-menu-item>
+            <a-sub-menu :key="item.id" v-else>
+              <template #title>
+                <UserOutlined />
+                <span>{{ item.title }}</span>
+              </template>
+              <a-menu-item v-for="em in item.children" :key="em.id">
+                <span class="title">{{ em.title }}</span></a-menu-item
+              >
+            </a-sub-menu>
           </template>
         </a-menu>
       </a-layout-sider>
@@ -60,8 +65,6 @@
 import { UserOutlined } from '@ant-design/icons-vue'
 
 import LayoutHeader from './components/LayoutHeader.vue'
-import { mapGetters } from 'vuex'
-import { removeToken } from '../utils/auth'
 
 export default {
   name: 'Layout',
@@ -109,24 +112,18 @@ export default {
       ],
       outColor: '#fff',
       name: undefined,
+      activeMenu: '',
+      defaultSelectedKeys: '',
+
+      permission_routes: [],
     }
   },
   computed: {
-    ...mapGetters([
-      'permission_routes', //渲染侧边栏
-    ]),
-    activeMenu() {
-      const route = this.$route
-      const { meta, name } = route
-      // if set path, the sidebar will highlight the path you set
-      if (meta.activeMenu) {
-        return meta.activeMenu
-      }
-      return [name]
-    },
+    // ...mapGetters([
+    //   'permission_routes', //渲染侧边栏
+    // ]),
     breadcrumb() {
       let { meta } = this.$route
-      console.log('meta', meta)
       return meta
     },
   },
@@ -144,17 +141,24 @@ export default {
       console.log('登出')
     },
     handleMenu(item) {
-      this.$router.push({ name: item.name })
+      console.log(item)
     },
   },
-  mounted() {
-    const userInfo = this.$store.getters['userInfo']
-    this.name = userInfo ? userInfo.phone : undefined
-  },
+  mounted() {},
   created() {},
 }
 </script>
 
+<style lang="scss">
+.main {
+  .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: rgba(0, 12, 23, 0.4);
+  }
+  .ant-menu .ant-menu-item .title {
+    margin-left: 0px;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .main {
   height: 100%;
