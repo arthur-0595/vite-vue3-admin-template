@@ -9,12 +9,7 @@
             class="avatar-image"
           />
           <div class="avatar-name">{{ name }}</div>
-          <div
-            class="sign-out-btn"
-            @mouseover="mouseover"
-            @mouseout="mouseout"
-            @click="handleOut"
-          >
+          <div class="sign-out-btn">
             <svg-icon name="out" class="svgClass" />
             <div class="out-name">退出登陆</div>
           </div>

@@ -19,7 +19,7 @@
     />
     <br />
     <button @click="goRouter('Security')">跳转安防</button>
-    <button @click="goRouter('Engine')">跳转引擎</button>
+    <button @click="openWindow()">打开引擎</button>
   </div>
 </template>
 
@@ -43,6 +43,9 @@ export default {
   methods: {
     goRouter(name) {
       this.$router.push({ name })
+    },
+    openWindow() {
+      window.open(`${location.origin}/#/engine`)
     },
     addCount() {
       this.$store.commit('mo1/addCount', 3)

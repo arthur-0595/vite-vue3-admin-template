@@ -10,6 +10,10 @@ vite搭建的vue3后台模板，UI框架antdv 2.x
 
   yarn dev
 
+  ## PS. 
+  
+  添加svg图标后需要重新运行yran dev ，否则无法显示新添加的svg图标
+
 ### 项目目录划分
 
     - node-modules

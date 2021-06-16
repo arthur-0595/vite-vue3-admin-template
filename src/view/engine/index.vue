@@ -1,7 +1,6 @@
 <template>
   <div class="engine">
-    <button @click="$route.go(-1)">返回</button>
-    <button @click="fnEmit()">触发事件xx</button>
+    <button class="" @click="fnEmit()">触发事件xx</button>
     <canvas class="engine" id="engine"></canvas>
   </div>
 </template>
@@ -61,6 +60,14 @@ export default {
   canvas {
     width: 100%;
     height: 100%;
+  }
+  button {
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    &.left20 {
+      left: 50px;
+    }
   }
 }
 </style>
