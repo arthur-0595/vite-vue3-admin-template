@@ -18,7 +18,8 @@
       @search="onSearch"
     />
     <br />
-    <button @click="goAF">跳转安防</button>
+    <button @click="goRouter('Security')">跳转安防</button>
+    <button @click="goRouter('Engine')">跳转引擎</button>
   </div>
 </template>
 
@@ -40,8 +41,8 @@ export default {
     ...mapGetters(['mo1Count']),
   },
   methods: {
-    goAF() {
-      this.$router.push({ name: 'Security' })
+    goRouter(name) {
+      this.$router.push({ name })
     },
     addCount() {
       this.$store.commit('mo1/addCount', 3)

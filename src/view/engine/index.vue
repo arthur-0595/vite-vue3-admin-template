@@ -1,7 +1,8 @@
 <template>
   <div class="engine">
+    <button @click="$route.go(-1)">返回</button>
+    <button @click="fnEmit()">触发事件xx</button>
     <canvas class="engine" id="engine"></canvas>
-    <button @click="fnEmit()"></button>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ import engine from '../view/engine/index.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/engine',
+    redirect: '/home',
   },
   { path: '/home', name: 'Home', component: home },
   { path: '/security', name: 'Security', component: security },
